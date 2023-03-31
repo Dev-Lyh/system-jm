@@ -6,7 +6,7 @@ import pandas as pd
 import os
 import re
 
-index_of_pages = 0
+index_of_pages = 25
 
 while index_of_pages < 56:
 
@@ -23,7 +23,7 @@ while index_of_pages < 56:
     else:
         y_one = 122.54
         x_one = 36.28
-        y_two = 335
+        y_two = 345
         x_two = 259.93
 
     df = tabula.read_pdf('./test_docs/cp/2015-2019.pdf', pages='all', area=[[y_one, x_one, y_two, x_two]])[index_of_pages]
