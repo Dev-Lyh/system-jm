@@ -1,50 +1,31 @@
-from tkinter import *
-
-from tkinter import filedialog
-
-def browseFiles():
-	filename = filedialog.askopenfilename(initialdir = "/",title = "Select a File", filetypes = (("Arquivos PDF","*.pdf*"),	("Todos os Arquivos","*.*")))
-	
-	label_file_explorer.configure(text="Arquivo aberto: "+filename)
-	
-window = Tk()
-
-w = 800 # width for the Tk root
-h = 500 # height for the Tk root
-
-# get screen width and height
-ws = window.winfo_screenwidth() # width of the screen
-hs = window.winfo_screenheight() # height of the screen
-
-x = (ws/2) - (w/2)
-y = (hs/2) - (h/2)
-
-window.geometry('%dx%d+%d+%d' % (w, h, x, y))
-
-window.title('Sistema de leitura de cartões ponto')
-
-window.config(background = "white", width=800)
-
-frame = Frame(window)
-frame.place(relx=0.5, rely=0.5, anchor='center')
-	
-label_file_explorer = Label(frame,	text = "Arquivo à selecionar", height = 4,fg = "blue")
-button_explore = Button(frame, text = "Procurar arquivo", command = browseFiles)
-
-checkbox_cp_01 = Checkbutton(frame, offvalue="older", text='Modelo Antigo')
-checkbox_cp_02 = Checkbutton(frame, offvalue="newest", text='Modelo Atual')
-
-label_model_ask = Label(frame, text="Selecione o modelo do cartão ponto")
-label_cp_01 = Label(frame, text="Modelo antigo")
-label_cp_02 = Label(frame, text="Modelo atual")
+import PySimpleGUI as sg
 
 
-label_file_explorer.grid(column = 1, row = 1)
+class Interface:
+    def __init__(self):
+        sg.theme('DarkBlue1')
+        
+        layout = [
+            [sg.Radio('Modelo Antigo', 'Radio1', default=True, key='2007',font=('Calibri', 16), pad=(120,0)),
+             sg.Radio('Modelo Atual', 'Radio1', key='2015',font=('Calibri', 16))],
+            [sg.FileBrowse('Procurar arquivo', file_types=(("Arquivos PDF", '*.pdf')), size=(17,0),font=('Calibri', 14)), sg.Input(key='path',pad=(14,10),font=('Calibri', 14))],
+            [sg.Text('Quantidade de páginas',font=('Calibri', 14),pad=(0,10)), sg.Input(key='pages',font=('Calibri', 14), size=(45,0),pad=(20,10))],
+            [sg.Button('Concluir', expand_x=True, font=('Calibri', 14), pad=(0,20))]
+        ]
+        
 
-button_explore.grid(column = 1, row = 2)
+        window = sg.Window(
+            'Sistema de leitura de cartões ponto').layout(layout)
 
-label_model_ask.grid(column=1, row=3)
+        self.button, self.values = window.Read()
 
-checkbox_cp_01.grid(column = 0, row = 4)
-checkbox_cp_02.grid(column = 1, row = 4)
-window.mainloop()
+    def Start(self):
+        cp_one = self.values['2007']
+        cp_two = self.values['2015']
+        path = self.values['path']
+        pages = self.values['pages']
+        print(f'Model: {cp_one}-{cp_two}\r\nPath: {path}\r\nPages quantity: {pages}')
+
+
+screen = Interface()
+screen.Start()
