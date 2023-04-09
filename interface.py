@@ -47,7 +47,7 @@ class Interface:
             sg.Input(key='pages', font=('Calibri', 14), pad=(14, 10), border_width=2)],
             [sg.Button('Começar', font=('Calibri', 14), pad=(
                 0, 20), expand_x=True, button_color='#0C73B3')],
-            [sg.Text('V 1.0.2', font=('Consolas', 8),
+            [sg.Text('V 1.5.0', font=('Consolas', 8),
                     justification='center', expand_x=True)]
         ]
 
