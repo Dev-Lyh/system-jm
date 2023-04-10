@@ -19,7 +19,7 @@ class Interface:
         def radio_is_checked(key):
             return window[key].metadata
 
-        sg.theme('DarkBlue14')
+        sg.theme('DarkGray5')
 
         layout = [
             [sg.Text('Sistema de leitura de cartões ponto', expand_x=True,

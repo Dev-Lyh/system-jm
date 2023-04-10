@@ -81,7 +81,7 @@ def read_hours_two(quantity_of_pages, path, destiny_path):
     ap.close()
 
     while index_of_pages < int(quantity_of_pages):
-        sg.popup('Processando...', f'Páginas concluídas: {index_of_pages + 1} de {quantity_of_pages}', non_blocking=True, auto_close_duration=2, keep_on_top=False, auto_close=True, font=('Calibri Bold', 14))
+        # sg.popup('Processando...', f'Páginas concluídas: {index_of_pages + 1} de {quantity_of_pages}', non_blocking=True, auto_close_duration=2, keep_on_top=False, auto_close=True, font=('Calibri Bold', 14))
 
         if index_of_pages == 4:
             y_one = 122.54
@@ -99,7 +99,7 @@ def read_hours_two(quantity_of_pages, path, destiny_path):
             y_two = 345
             x_two = 259.93
 
-        df = tabula.read_pdf(path, pages='all', area=[[y_one, x_one, y_two, x_two]], silent=True)[index_of_pages]
+        df = tabula.read_pdf(path, pages='all', area=[[y_one, x_one, y_two, x_two]])[index_of_pages]
         df.to_csv(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv', index=False)
         with open(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv', mode='r+') as file:
             file_readed = file.read()
