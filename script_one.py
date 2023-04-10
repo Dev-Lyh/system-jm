@@ -5,7 +5,6 @@ import glob
 import pandas as pd
 import os
 import re
-import time_ed
 
 index_of_pages = 0
 message = ''
@@ -45,7 +44,6 @@ def read_hours(quantity_of_pages, path, destiny_path):
         os.remove(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv')
 
         index_of_pages += 1
-        time_ed.other = f'Já foram lidos {index_of_pages} de {quantity_of_pages}'
     
 # def nf():
 #     global message

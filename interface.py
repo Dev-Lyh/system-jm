@@ -6,7 +6,6 @@ import time
 from script_one import read_hours
 from script_one import format_dates
 
-gfudai = ''
 class Interface:
     def __init__(self):
 
@@ -60,23 +59,12 @@ class Interface:
 
             [sg.Button('Começar', font=('Calibri', 14), pad=(
                 0, 20), expand_x=True, button_color='#0C73B3')],
-            [sg.Text(f'{gfudai}', k='indicator')],
             [sg.Text('V 1.0.0', font=('Consolas', 8),
                      justification='center', expand_x=True)]
         ]
 
         window = sg.Window(
             'Sistema de leitura de cartões ponto').layout(layout)
-                
-
-        def FirstModel(pg,pt,fp, inst):
-
-            nonlocal mds
-            mds += 1
-            # so.nf()
-
-
-
         
         while True:
 
@@ -87,18 +75,14 @@ class Interface:
             folder_path = values['folder_path']
             radi1 = window['2007'].metadata
             radi2 = window['2015'].metadata
-            indicator = window['indicator']
 
             if event in radio_keys:
                 check_radio(event)
             if event == 'Começar' and window['2007'].metadata == True:
-                read_hours(pages, path, folder_path)
-                format_dates(folder_path)
+                so.read_hours(pages, path, folder_path)
+                so.format_dates(folder_path)
             elif event == 'Começar' and window['2015'].metadata == True:
-                print('Modelo de 2015')
-
-            print(
-                f'Model: {radi1}-{radi2}\r\nPath: {path}\r\nPages quantity: {pages}')
+                st.read_hours(pages, path, folder_path)
 
 
 Interface()
