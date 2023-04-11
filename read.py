@@ -22,16 +22,22 @@ def read_hours_one(quantity_of_pages, path, destiny_path):
     while index_of_pages < int(quantity_of_pages):
         sg.popup('Processando...', f'Páginas concluídas: {index_of_pages + 1} de {quantity_of_pages}', non_blocking=True, auto_close_duration=3, keep_on_top=False, auto_close=True, font=('Calibri', 14))
 
-        y_one = 148.47
-        x_one = 49.86
-        y_two = 355.54
-        x_two = 206.33
+        # y_one = 148.47
+        # x_one = 49.86
+        # y_two = 355.54
+        # x_two = 206.33
+
+        y_one = 191.02
+        x_one = 35.63 
+        y_two = 564.47 
+        x_two = 231.67 
 
         df = tabula.read_pdf(path, pages='all', area=[[y_one, x_one, y_two, x_two]], silent=True)[index_of_pages]
         df.to_csv(destiny_path+'/'+str(index_of_pages) +  '-edit-test.csv', index=False)
         with open(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv', mode='r+') as file:
             file_readed = file.read()
-            final_file = filters.filter_one(file_readed)
+            # final_file = filters.filter_one(file_readed)
+            final_file = re.sub(r'Mês: ', '', file_readed)
 
             csv_file = open(destiny_path+'/all_pages.csv', mode='r+')
             csv_file.read()
