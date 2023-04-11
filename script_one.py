@@ -9,24 +9,24 @@ import re
 index_of_pages = 0
 message = ''
 
-def read_hours(quantity_of_pages, path, destiny_path):
+def read_hours():
 
     global index_of_pages
     global message
 
-    ap = open(destiny_path+'/all_pages.csv', 'w')
+    ap = open('./tests/2023_03_30-0906'+'/all_pages.csv', 'w')
     ap.close()
 
-    while index_of_pages < int(quantity_of_pages):
+    while index_of_pages < 97:
 
         y_one = 148.47
         x_one = 49.86
         y_two = 355.54
         x_two = 206.33
 
-        df = tabula.read_pdf(path, pages='all', area=[[y_one, x_one, y_two, x_two]])[index_of_pages]
-        df.to_csv(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv', index=False)
-        with open(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv', mode='r+') as file:
+        df = tabula.read_pdf('./test_docs/cp/2007-2015.pdf', pages='all', area=[[y_one, x_one, y_two, x_two]])[index_of_pages]
+        df.to_csv('./tests/2023_03_30-0906'+'/'+str(index_of_pages)+'-edit-test.csv', index=False)
+        with open('./tests/2023_03_30-0906'+'/'+str(index_of_pages)+'-edit-test.csv', mode='r+') as file:
             file_readed = file.read()
             del_pipelines = re.sub(' | ', ',', file_readed)
             del_pipelines_comma = re.sub(r'[ | ]', '', del_pipelines)
@@ -36,12 +36,12 @@ def read_hours(quantity_of_pages, path, destiny_path):
             fix_month_year = re.sub(r'(?<=[A-Z][A-Z][A-Z]/[0-9][0-9][0-9][0-9],)', '\n', del_double_comma)
             fix_weekdays_names = re.sub(r'[A-Z][A-Z][A-Z],', '', fix_month_year)
 
-            csv_file = open(destiny_path+'/all_pages.csv', mode='r+')
+            csv_file = open('./tests/2023_03_30-0906'+'/all_pages.csv', mode='r+')
             csv_file.read()
             csv_file.write(fix_weekdays_names)
             csv_file.truncate()
         
-        os.remove(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv')
+        os.remove('./tests/2023_03_30-0906'+'/'+str(index_of_pages)+'-edit-test.csv')
 
         index_of_pages += 1
     
@@ -100,4 +100,7 @@ def format_dates(destiny_path):
             index += 1
     
     os.remove(destiny_path+'/all_pages.csv')
+
+# read_hours()
     
+format_dates('./tests/2023_03_30-0906')
