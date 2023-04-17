@@ -41,5 +41,17 @@ def lines_month(base, out):
     pipe = re.sub(r'[ | ]', '', ot)
     remove_prefix = pipe.removeprefix(',')
     months = re.sub(r'[A-Z][A-Z][A-Z]/[0-9][0-9][0-9][0-9]/[A-Z][A-Z][A-Z]/[0-9][0-9][0-9][0-9],', '', remove_prefix)
+    replace_jan = re.sub(r'JAN','01',months)
+    replace_feb = re.sub(r'FEV','02',replace_jan)
+    replace_mar = re.sub(r'MAR','03',replace_feb)
+    replace_apr = re.sub(r'ABR','04',replace_mar)
+    replace_may = re.sub(r'MAI','05',replace_apr)
+    replace_jun = re.sub(r'JUN','06',replace_may)
+    replace_jul = re.sub(r'JUL','07',replace_jun)
+    replace_aug = re.sub(r'AGO','08',replace_jul)
+    replace_sep = re.sub(r'SET','09',replace_aug)
+    replace_out = re.sub(r'OUT','10',replace_sep)
+    replace_nov = re.sub(r'NOV','11',replace_out)
+    replace_dec = re.sub(r'DEZ','12',replace_nov)
 
-    return months
+    return replace_dec
