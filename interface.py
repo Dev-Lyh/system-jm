@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import os
 
 class Interface:
     def __init__(self, ind, qtd, func1, func2, func3):
@@ -19,7 +20,7 @@ class Interface:
         def radio_is_checked(key):
             return window[key].metadata
 
-        sg.theme('DarkBlue14')
+        sg.theme('LightGrey')
 
         layout = [
             [sg.Text('Sistema de Conversão de CPs', expand_x=True,
@@ -37,18 +38,24 @@ class Interface:
             ),
                 sg.Image(radio_unchecked, enable_events=True, k='2015', metadata=False), sg.T('Modelo atual', enable_events=True, k='-T2-', font=('Calibri', 16))],
 
-            [sg.FileBrowse('Procurar arquivo', file_types=(("Arquivos PDF", '*.pdf')), size=(17, 0), font=('Calibri', 14), button_color='#33688A', pad=(0, 10)),
+            [sg.FileBrowse('Procurar arquivo', file_types=(("Arquivos PDF", '*.pdf')), size=(17, 0), font=('Calibri', 14), pad=(0, 10)),
             sg.Input(key='path', pad=(20, 10), font=('Calibri', 14), border_width=2)],
 
-            [sg.FolderBrowse('Pasta de destino', size=(17, 0), font=('Calibri', 14), button_color='#33688A', pad=(0, 10)),
+            [sg.FolderBrowse('Pasta de destino', size=(17, 0), font=('Calibri', 14), pad=(0, 10)),
             sg.Input(key='folder_path', pad=(20, 10), font=('Calibri', 14), border_width=2)],
 
             [sg.Text('Quantidade de páginas', font=('Calibri', 14), pad=(0, 10)),
             sg.Input(key='pages', font=('Calibri', 14), pad=(14, 10), border_width=2)],
             [sg.Button('Começar', font=('Calibri', 14), pad=(
-                0, 20), expand_x=True, button_color='#0C73B3')],
-            [sg.Text('V 1.5.0', font=('Consolas', 8),
-                    justification='center', expand_x=True)]
+                0, 20), expand_x=True, button_color='dodgerblue')],
+            [sg.Text('V 1.5.2', font=('Consolas', 8),
+                    justification='center', expand_x=True)],
+            [sg.Graph(
+                canvas_size=(270, 30),
+                graph_bottom_left=(0, 0),
+                graph_top_right=(0, 0),
+                key="graph"
+            ),sg.Button('Manual do Usuário', font=('Consolas Underline', '8'), button_color='dodgerblue on white', border_width=1)]
         ]
 
         window = sg.Window('Sistema de Conversão de CPs', icon='./file_icon.ico').layout(layout)
@@ -71,3 +78,5 @@ class Interface:
                 func2(folder_path)
             elif event == 'Começar' and radi2 == True:
                 func3(pages, path, folder_path)
+            elif event == 'Manual do Usuário':
+                os.system('arq_test.pdf')
