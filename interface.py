@@ -22,7 +22,7 @@ class Interface:
         sg.theme('DarkBlue14')
 
         layout = [
-            [sg.Text('Sistema de leitura de cartões ponto', expand_x=True,
+            [sg.Text('Sistema de Conversão de CPs', expand_x=True,
                     justification='center', font=('Calibri Bold', 18))],
             [sg.Graph(
                 canvas_size=(150, 60),
@@ -51,7 +51,7 @@ class Interface:
                     justification='center', expand_x=True)]
         ]
 
-        window = sg.Window('Sistema de leitura de cartões ponto').layout(layout)
+        window = sg.Window('Sistema de Conversão de CPs', icon='./file_icon.ico').layout(layout)
 
         while True:
 
