@@ -5,7 +5,7 @@ import filters
 import interface
 import PySimpleGUI as sg
 
-index_of_pages = 0
+index_of_pages = 55
 quant_of_pages = 0
 
 def read_hours_one(quantity_of_pages, path, destiny_path):
