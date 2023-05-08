@@ -41,6 +41,8 @@ def read_hours_one(quantity_of_pages, path, destiny_path):
         os.remove(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv')
 
         index_of_pages += 1
+    
+    index_of_pages = 0
 
 
 def format_dates(destiny_path):
@@ -113,6 +115,8 @@ def read_hours_two(quantity_of_pages, path, destiny_path):
         os.remove(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv')
 
         index_of_pages += 1
+    
+    index_of_pages = 0
 
 
 interface.Interface(index_of_pages, quant_of_pages, read_hours_one, format_dates, read_hours_two)

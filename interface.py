@@ -21,13 +21,13 @@ class Interface:
         def radio_is_checked(key):
             return window[key].metadata
 
-        sg.theme('DarkBlue')
+        sg.theme('DarkBlue12')
 
         input_bg_color = sg.theme_input_background_color()
 
 
         layout = [
-            [sg.Text('Sistema de Conversão de CPs', expand_x=True,
+            [sg.Text('Auto CP - ITAÚ', expand_x=True,
                     justification='center', font=('Calibri Bold', 18))],
             [sg.Graph(
                 canvas_size=(150, 60),
@@ -52,17 +52,17 @@ class Interface:
             sg.Input(key='pages', font=('Calibri', 14), pad=(14, 8), border_width=2)],
             [sg.Button('Começar', font=('Calibri', 14), pad=(
                 0, 20), expand_x=True, button_color='dodgerblue')],
-            [sg.Text('V 1.5.2', font=('Consolas', 8),
+            [sg.Text('V 1.5.3', font=('Consolas', 8),
                     justification='center', expand_x=True)],
             [sg.Graph(
                 canvas_size=(270, 30),
                 graph_bottom_left=(0, 0),
                 graph_top_right=(0, 0),
                 key="graph"
-            ),sg.Button('Manual do Usuário', font=('Consolas Underline', '8'), button_color=f"dodgerblue on {input_bg_color}", border_width=1)],
+            ),sg.Button('Manual do Usuário', font=('Consolas Underline', '8'), button_color=f"white on {input_bg_color}", border_width=1)],
         ]
 
-        window = sg.Window('Sistema de Conversão de CPs', icon='./file_icon.ico').layout(layout)
+        window = sg.Window('Auto CP - ITAÚ', icon='./file_icon.ico').layout(layout)
 
         while True:
 
