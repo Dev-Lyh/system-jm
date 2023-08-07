@@ -5,7 +5,7 @@ import filters
 import interface
 import PySimpleGUI as sg
 
-index_of_pages = 55
+index_of_pages = 0
 quant_of_pages = 0
 
 def read_hours_one(quantity_of_pages, path, destiny_path):
@@ -83,23 +83,18 @@ def read_hours_two(quantity_of_pages, path, destiny_path):
     ap.close()
 
     while index_of_pages < int(quantity_of_pages):
-        sg.popup('Processando...', f'Páginas concluídas: {index_of_pages + 1} de {quantity_of_pages}', non_blocking=True, auto_close_duration=2, keep_on_top=False, auto_close=True, font=('Calibri Bold', 14))
+        sg.popup('Processando...', f'Páginas concluídas: {index_of_pages + 1} de {quantity_of_pages}', non_blocking=True, auto_close_duration=2, keep_on_top=False, auto_close=True, font=('Calibri', 14))
 
-        if index_of_pages == 4:
-            y_one = 122.54
-            x_one = 36.28
-            y_two = 306
-            x_two = 259.93
-        elif index_of_pages == 0:
-            y_one = 122.54
-            x_one = 36.28
-            y_two = 388
-            x_two = 259.93
+        if index_of_pages == 1 or index_of_pages == 2 or index_of_pages == 3 or index_of_pages == 4:
+            y_one = 40.89 * 2.8346438836889
+            x_one = 12.80 * 2.8346438836889
+            y_two = 115.66 * 2.8346438836889
+            x_two = 91.55 * 2.8346438836889
         else:
-            y_one = 122.54
-            x_one = 36.28
-            y_two = 345
-            x_two = 259.93
+            y_one = 40.89 * 2.8346438836889
+            x_one = 12.80 * 2.8346438836889
+            y_two = 138.14 * 2.8346438836889
+            x_two = 91.55 * 2.8346438836889
 
         df = tabula.read_pdf(path, pages='all', area=[[y_one, x_one, y_two, x_two]], silent=True)[index_of_pages]
         df.to_csv(destiny_path+'/'+str(index_of_pages)+'-edit-test.csv', index=False)
